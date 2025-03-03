@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados do Biopark</title>
+</head>
+<body>
+<h1>Dados do Biopark</h1>
+<div>
+    <h2>Data e Hora do Servidor: <span th:text="${dataHora}"></span></h2>
+    <h2>Localização:</h2>
+    <ul>
+        <li>Cidade: <span th:text="${cidade}"></span></li>
+        <li>Estado: <span th:text="${estado}"></span></li>
+        <li>País: <span th:text="${pais}"></span></li>
+        <li>Latitude: <span th:text="${latitude}"></span></li>
+        <li>Longitude: <span th:text="${longitude}"></span></li>
+    </ul>
+    <h2>Dados do Biopark:</h2>
+    <div th:text="${dadosBiopark}"></div>
+</div>
+</body>
+</html>
