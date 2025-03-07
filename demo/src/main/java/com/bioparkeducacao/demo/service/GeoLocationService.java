@@ -10,12 +10,25 @@ import java.util.Map;
 public class GeoLocationService {
 
     public Map<String, String> getLocation() {
+        String url = "http://ip-api.com/json/";
+
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String, Object> response = restTemplate.getForObject(url, Map.class);
+
         Map<String, String> location = new HashMap<>();
-        location.put("cidade", "Palotina");
-        location.put("estado", "Paraná");
-        location.put("pais", "Brasil");
-        location.put("latitude", "-24.247");
-        location.put("longitude", "-53.689");
+        if (response != null) {
+            location.put("cidade", (String) response.get("city"));
+            location.put("estado", (String) response.get("regionName"));
+            location.put("pais", (String) response.get("country"));
+            location.put("latitude", String.valueOf(response.get("lat")));
+            location.put("longitude", String.valueOf(response.get("lon")));
+        } else {
+            location.put("cidade", "Desconhecido");
+            location.put("estado", "Desconhecido");
+            location.put("pais", "Desconhecido");
+            location.put("latitude", "0");
+            location.put("longitude", "0");
+        }
 
         return location;
     }
